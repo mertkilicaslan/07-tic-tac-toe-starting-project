@@ -1,30 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 
-const initialGameBoard = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-];
-
-const GameBoard = (props) => {
-  const [gameBoard, setGameBoard] = useState(initialGameBoard);
-
-  const handleGameBoardClick = (e) => {};
-
+const GameBoard = ({ gameBoard, handlePlayAMove, gameStatus }) => {
   return (
-    <ol id="game-board">
-      {initialGameBoard.map((row, rowIndex) => (
-        <li key={rowIndex}>
-          <ol>
-            {row.map((col, colIndex) => (
-              <li key={colIndex}>
-                <button onClick={handleGameBoardClick}>{col}</button>
-              </li>
-            ))}
-          </ol>
-        </li>
-      ))}
-    </ol>
+    <>
+      <ol id="game-board">
+        {gameBoard.map((row, rowIndex) => (
+          <li key={rowIndex}>
+            <ol>
+              {row.map((col, colIndex) => (
+                <li key={colIndex}>
+                  <button
+                    onClick={() => handlePlayAMove(rowIndex, colIndex)}
+                    disabled={gameBoard[rowIndex][colIndex] || gameStatus}
+                  >
+                    {col}
+                  </button>
+                </li>
+              ))}
+            </ol>
+          </li>
+        ))}
+      </ol>
+    </>
   );
 };
 
