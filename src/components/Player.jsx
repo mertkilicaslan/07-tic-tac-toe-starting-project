@@ -1,12 +1,15 @@
 import React from "react";
 import { useState } from "react";
 
-const Player = ({ defaultName, symbol }) => {
+const Player = ({ defaultName, symbol, isActive, handleNewPlayerNameSave }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [playerName, setPlayerName] = useState(defaultName);
 
   const handleEditing = () => {
     setIsEditing((prev) => !prev);
+    if (isEditing) {
+      handleNewPlayerNameSave(symbol, playerName);
+    }
   };
 
   const handlePlayerNameChange = (e) => {
@@ -14,7 +17,7 @@ const Player = ({ defaultName, symbol }) => {
   };
 
   return (
-    <li>
+    <li className={isActive ? "active" : undefined}>
       <span className="player">
         {isEditing ? (
           <input
