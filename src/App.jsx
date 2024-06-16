@@ -5,7 +5,7 @@ import Player from "./components/Player";
 import Log from "./components/Log";
 import GameOver from "./components/GameOver";
 
-import { checkTicTacToeWinner } from "./check-winner";
+import { checkTicTacToeWinner } from "./utils/check-winner";
 
 const INITIAL_GAME_BOARD = [
   [null, null, null],
